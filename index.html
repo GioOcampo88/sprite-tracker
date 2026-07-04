@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Sprites Tracker | Colección Runners Capítulo 7 Temporada 3</title>
+    <meta name="description" content="Registra y completa tu colección de espíritus (sprites) en Fortnite Capítulo 7, Temporada 3 (Runners). Registra variantes Base, Dorado, Gomita y Galaxia con estadísticas, filtros y copias de seguridad de forma fácil y rápida.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="hero-overlay" style="background-image: linear-gradient(to bottom, rgba(11, 14, 20, 0.4), rgba(11, 14, 20, 0.95)), url('assets/hero.png');"></div>
+        <div class="header-container container">
+            <div class="logo-area">
+                <span class="fortnite-badge">TEMPORADA 3: RUNNERS</span>
+                <h1 class="main-title">SPRITE LOCKER</h1>
+                <p class="subtitle">Registra tu colección de espíritus y domina el mapa</p>
+            </div>
+            
+            <!-- Global Stats Card -->
+            <div class="stats-panel glass-card" id="stats-panel">
+                <div class="progress-ring-container">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" />
+                        <circle class="progress-ring__circle" id="global-progress-circle" stroke="url(#goldGradient)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" />
+                        <defs>
+                            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffd700" />
+                                <stop offset="100%" stop-color="#ff7c00" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="progress-value">
+                        <span id="global-percentage">0%</span>
+                        <span class="sub-progress-text" id="global-count">0/64</span>
+                    </div>
+                </div>
+                
+                <div class="stats-details">
+                    <h2 class="stats-title">Estadísticas de Colección</h2>
+                    <div class="variant-stats-grid">
+                        <div class="variant-stat-item" data-type="base">
+                            <span class="stat-icon"><i class="fa-solid fa-ghost"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-label">Base</span>
+                                <span class="stat-count" id="stat-base">0/16</span>
+                            </div>
+                        </div>
+                        <div class="variant-stat-item" data-type="gold">
+                            <span class="stat-icon text-gold"><i class="fa-solid fa-crown"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-label">Dorado</span>
+                                <span class="stat-count" id="stat-gold">0/16</span>
+                            </div>
+                        </div>
+                        <div class="variant-stat-item" data-type="gummy">
+                            <span class="stat-icon text-gummy"><i class="fa-solid fa-droplet"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-label">Gomita</span>
+                                <span class="stat-count" id="stat-gummy">0/16</span>
+                            </div>
+                        </div>
+                        <div class="variant-stat-item" data-type="galaxy">
+                            <span class="stat-icon text-galaxy"><i class="fa-solid fa-user-astronaut"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-label">Galaxia</span>
+                                <span class="stat-count" id="stat-galaxy">0/16</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Control Bar -->
+        <section class="control-panel glass-card">
+            <!-- Search & Utilities Row -->
+            <div class="controls-top">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Buscar por nombre o habilidad..." aria-label="Buscar espíritus">
+                </div>
+                
+                <div class="utility-actions">
+                    <div class="audio-toggle-wrapper">
+                        <label class="switch" for="audio-toggle">
+                            <input type="checkbox" id="audio-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="switch-label"><i class="fa-solid fa-volume-high"></i> Sonidos</span>
+                    </div>
+                    
+                    <button class="btn btn-secondary" id="btn-export" title="Exportar datos"><i class="fa-solid fa-file-export"></i> Exportar</button>
+                    <button class="btn btn-secondary" id="btn-import" title="Importar datos"><i class="fa-solid fa-file-import"></i> Importar</button>
+                    <button class="btn btn-danger" id="btn-reset" title="Restablecer todo"><i class="fa-solid fa-rotate-left"></i> Restablecer</button>
+                </div>
+            </div>
+            
+            <!-- Filters Row -->
+            <div class="controls-bottom">
+                <!-- Rarity Filter Group -->
+                <div class="filter-group">
+                    <span class="filter-group-label">Rareza:</span>
+                    <div class="filter-buttons" id="rarity-filters">
+                        <button class="filter-btn active" data-rarity="all">Todos</button>
+                        <button class="filter-btn" data-rarity="Rare">Raro</button>
+                        <button class="filter-btn" data-rarity="Epic">Épico</button>
+                        <button class="filter-btn" data-rarity="Legendary">Legendario</button>
+                        <button class="filter-btn" data-rarity="Mythic">Mítico</button>
+                    </div>
+                </div>
+                
+                <!-- Status Filter Group -->
+                <div class="filter-group">
+                    <span class="filter-group-label">Estado:</span>
+                    <div class="filter-buttons" id="status-filters">
+                        <button class="filter-btn active" data-status="all">Todos</button>
+                        <button class="filter-btn" data-status="collected">Conseguidos</button>
+                        <button class="filter-btn" data-status="missing">Faltantes</button>
+                    </div>
+                </div>
+                
+                <!-- Sorting Group -->
+                <div class="filter-group">
+                    <span class="filter-group-label">Ordenar:</span>
+                    <select id="sort-select" class="custom-select" aria-label="Ordenar espíritus">
+                        <option value="default">Por Rareza</option>
+                        <option value="alpha">Alfabético</option>
+                        <option value="progress-desc">Más Conseguidos</option>
+                        <option value="progress-asc">Menos Conseguidos</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spirits Grid -->
+        <section class="grid-section">
+            <div class="grid-header">
+                <h2 class="section-heading"><i class="fa-solid fa-list-check"></i> Lista de Colección (<span id="visible-count">16</span> mostrados)</h2>
+            </div>
+            <div class="spirits-grid" id="spirits-grid">
+                <!-- Javascript will render cards here -->
+                <div class="loading-state">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Cargando lista de espíritus...
+                </div>
+            </div>
+        </section>
+
+        <!-- Informational Guide -->
+        <section class="guide-section glass-card">
+            <h2 class="guide-title"><i class="fa-solid fa-book-open-reader"></i> Guía del Coleccionista: Mecánica de Espíritus</h2>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <div class="guide-card-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                    <h3>¿Cómo guardar permanentemente?</h3>
+                    <p>Equipar un espíritu durante una partida <strong>no</strong> lo registrará en tu taquilla. Para quedártelo de forma permanente, debes realizar una <strong>Extracción</strong>:</p>
+                    <ul>
+                        <li><strong>Cofres de Extracción:</strong> Ubicados en puntos fijos del mapa. Actívalos para depositar tu espíritu, pero ten cuidado: emiten un fuerte ruido que alertará a los rivales.</li>
+                        <li><strong>Extractores Portátiles:</strong> Consumibles raros que completan la extracción al instante y en total silencio.</li>
+                    </ul>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Variantes de Rareza y Polvo</h3>
+                    <p>Cada uno de los 16 espíritus base puede aparecer en 4 acabados diferentes. Además de la versión base, existen tres variantes ultra raras:</p>
+                    <ul>
+                        <li><strong>Dorado (Gold):</strong> Otorga un <strong>+300% de Experiencia (XP)</strong> extra al jugar.</li>
+                        <li><strong>Gomita (Gummy):</strong> Aumenta la velocidad a la que ganas <strong>Polvo de Espíritu</strong> en la partida.</li>
+                        <li><strong>Galaxia (Galaxy):</strong> La variante más codiciada. Otorga mejoras de recarga y un aspecto estelar único.</li>
+                    </ul>
+                    <p class="dust-tip"><i class="fa-solid fa-circle-info"></i> Puedes consumir <strong>Polvo de Espíritu</strong> (Sprite Dust) en el lobby para re-invocar espíritus previamente extraídos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer-bar">
+        <div class="container footer-content">
+            <p>Fortnite Sprites Tracker es una herramienta no oficial desarrollada para fans de Fortnite.</p>
+            <p>© 2026 Epic Games, Inc. Fortnite es una marca registrada de Epic Games, Inc. en los EE.UU. y otros países.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Backup Modal (Export/Import) -->
+    <div class="modal-backdrop" id="backup-modal" aria-hidden="true" style="display: none;">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Gestión de Copia de Seguridad</h3>
+                <button class="close-btn" id="btn-close-modal" aria-label="Cerrar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="export-container">
+                    <p>Copia el siguiente código para guardar tu progreso actual o compartir tu taquilla con amigos:</p>
+                    <textarea id="backup-code-area" class="backup-textarea" readonly aria-label="Código de copia de seguridad"></textarea>
+                    <button class="btn btn-primary btn-block" id="btn-copy-code"><i class="fa-solid fa-copy"></i> Copiar Código</button>
+                </div>
+                <div id="import-container" style="display: none;">
+                    <p>Pega tu código de copia de seguridad a continuación para restaurar tu progreso:</p>
+                    <textarea id="import-code-area" class="backup-textarea" placeholder="Pega el código aquí..." aria-label="Código para restaurar"></textarea>
+                    <div id="import-error" class="error-msg" style="display: none;">Código inválido. Asegúrate de copiarlo completo.</div>
+                    <button class="btn btn-success btn-block" id="btn-confirm-import"><i class="fa-solid fa-check"></i> Confirmar Importación</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Reset Modal -->
+    <div class="modal-backdrop" id="reset-modal" aria-hidden="true" style="display: none;">
+        <div class="modal-content glass-card confirm-modal">
+            <div class="modal-header">
+                <h3>¿Restablecer Progreso?</h3>
+                <button class="close-btn" id="btn-close-reset-modal" aria-label="Cerrar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Esta acción es irreversible y borrará por completo todos los espíritus y variantes marcados en tu taquilla actual.</p>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="btn-cancel-reset">Cancelar</button>
+                    <button class="btn btn-danger" id="btn-confirm-reset">Restablecer Todo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
