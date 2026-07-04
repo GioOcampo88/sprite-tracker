@@ -30,7 +30,7 @@ const SPIRITS_DATABASE = [
     },
     {
         id: "dream",
-        name: "Espíritu de Ensueño (Dream)",
+        name: "Espíritu Dormilon (almohadita)",
         rarity: "Legendary",
         ability: "Te otorga un objeto aleatorio cada vez que sube de nivel durante la partida, con alta probabilidad de botín legendario.",
         source: "Encuentro raro en las zonas de bosque y naturaleza."
@@ -44,14 +44,14 @@ const SPIRITS_DATABASE = [
     },
     {
         id: "boss",
-        name: "Espíritu Jefe (Boss)",
+        name: "Espíritu Jefe (DeadPool)",
         rarity: "Legendary",
         ability: "Potencia el daño de las armas de asalto y otorga una recarga 15% más rápida al derrotar enemigos consecutivamente.",
         source: "Se obtiene exclusivamente al derrotar a los jefes principales del mapa."
     },
     {
         id: "aura",
-        name: "Espíritu de Aura",
+        name: "Espíritu Mago",
         rarity: "Legendary",
         ability: "Crea una zona curativa a tu alrededor que sana gradualmente a ti y a tus compañeros de equipo cercanos.",
         source: "Cofres legendarios de la isla."
@@ -72,7 +72,7 @@ const SPIRITS_DATABASE = [
     },
     {
         id: "duck",
-        name: "Espíritu Patito",
+        name: "Espíritu Pato",
         rarity: "Epic",
         ability: "Regenera tu escudo de forma continua mientras realizas gestos (emotes) o tocas música (jam).",
         source: "Cofres cerca de lagos y zonas de agua dulce."
