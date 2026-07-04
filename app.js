@@ -308,6 +308,7 @@ function renderSpiritsGrid() {
                 <div class="card-header-row">
                     <h3 class="sprite-title">${spirit.name}</h3>
                     <span class="rarity-pill" data-rarity="${spirit.rarity}">${rarityText}</span>
+                    <img src="https://culturageek.com.ar/wp-content/uploads/2026/06/espiritu-jefe-boss-sprite-fortnite.webp" width="75" height="75">
                 </div>
                 
                 <p class="sprite-ability">${spirit.ability}</p>
